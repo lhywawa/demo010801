@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            ajaxData();
+        });
+         function ajaxData() {
+            $.ajax({
+                url:"findAll.do",
+                type:"post",
+                data:{},
+                dataType:"json",
+                success:function (obj) {
+                    var str="";
+                    $.each(obj,function (i) {
+                        str+="<tr class='info'>";
+                        str+="    <td>"+obj[i].id+"</td>";
+                        str+="    <td>"+obj[i].title+"</td>";
+                        str+="    <td>"+obj[i].summary+"</td>";
+                        str+="    <td>"+obj[i].author+"</td>";
+                        str+="    <td>"+obj[i].creataDate+"</td>";
+                        str+="</tr>";
+
+                    })
+                    $(".tab").append(str)
+                }
+            })    
+        }
+    </script>
+</head>
+<body>
+<table class="tab" border="1px solid black">
+    <tr>
+        <td>编号</td>
+        <td>主题</td>
+        <td>内容</td>
+        <td>作者</td>
+        <td>创建时间</td>
+    </tr>
+</table>
+</body>
+</html>
